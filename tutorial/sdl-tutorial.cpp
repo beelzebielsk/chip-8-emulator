@@ -21,14 +21,16 @@ bool CApp::OnInit() {
 
 int CApp::OnExecute() {
     if (OnInit() == false) {
-        // TODO: Why?
+        /* Q: Why?
+         * A: That's our agreed upon sign of a failure to execute.
+         */
         return -1;
     }
 
     SDL_Event Event;
     while(Running) {
-        /* Word? Busy looping?
-         * Nope, not quite. While there are events to process, we
+        /* Q: Word? Busy looping?
+         * A: Nope, not quite. While there are events to process, we
          * process them, one at a time. This seems to be closer to
          * something like select: is there an event to be handled?
          * Maybe there's some event storing queue.
@@ -46,17 +48,17 @@ int CApp::OnExecute() {
 }
 
 void CApp::OnEvent(SDL_Event* Event) { 
-    if (Event->type == SDL_QUIT) {
-        Running = false;
-    }
+    CEvent::OnEvent(Event);
 }
+
 void CApp::OnLoop() { }
+
 void CApp::OnRender() { 
-    //CSurface::OnDraw(SurfDisplay, SurfTest, 100, 100);
     CSurface::OnDraw(SurfDisplay, SurfTest, 0, 0);
     CSurface::OnDraw(SurfDisplay, SurfTest, 100, 100, 320, 240, 10, 10);
     SDL_Flip(SurfDisplay);
 }
+
 void CApp::OnCleanup() { 
     SDL_FreeSurface(SurfDisplay);
     SDL_FreeSurface(SurfTest);

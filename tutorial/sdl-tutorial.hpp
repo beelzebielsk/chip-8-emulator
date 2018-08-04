@@ -2,8 +2,9 @@
 #define _CAPP_H_
  
 #include <SDL/SDL.h>
+#include "event.h"
  
-class CApp {
+class CApp : public CEvent {
     private:
         bool Running;
         SDL_Surface* SurfDisplay = NULL;
@@ -18,6 +19,8 @@ class CApp {
         void OnLoop();
         void OnRender();
         void OnCleanup();
+
+        void OnExit() { Running = false; };
 };
  
 #endif
