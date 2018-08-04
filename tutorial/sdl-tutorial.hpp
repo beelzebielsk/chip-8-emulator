@@ -7,8 +7,10 @@
 class CApp : public CEvent {
     private:
         bool Running;
-        SDL_Surface* SurfDisplay = NULL;
-        SDL_Surface* SurfTest = NULL;
+        SDL_Surface* bg = NULL;
+        SDL_Surface* X = NULL;
+        SDL_Surface* O = NULL;
+        SDL_Surface* display = NULL;
     public:
         CApp();
         int OnExecute();

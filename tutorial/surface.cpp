@@ -67,3 +67,12 @@ bool CSurface::OnDraw(
 
     return true;
 }
+
+bool CSurface::Transparent(SDL_Surface* dest, int R, int G, int B) {
+    if (dest == NULL) return false;
+    /* SDL_MapRGB(surface?, R, G, B) maps the color specified by R,G,B
+     * to the closest color in the given surface.
+     */
+    SDL_SetColorKey(dest, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(dest->format, R, G, B));
+    return true;
+}
